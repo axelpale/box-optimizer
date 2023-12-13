@@ -5,11 +5,13 @@ const computeRatioValue = (r) => {
   const dphi = Math.abs(r - phi)
   const dsqrt2 = Math.abs(r - sqrt2)
   const d2 = Math.abs(r - 2)
+  const d1 = Math.abs(r - 1)
 
   return (
     (dphi < 0.1 ? 1 : 0) +
     (dsqrt2 < 0.1 ? 1 : 0) +
-    (d2 < 0.1 ? 1 : 0)
+    (d2 < 0.1 ? 1 : 0) +
+    (d1 < 0.05 ? 1 : 0)
   )
 }
 
@@ -31,8 +33,16 @@ const computeBoxValue = (box) => {
   return ratiosValue
 }
 
+// Process
+const valuations = boxes.map(box => {
+  const value = computeBoxValue(box)
+  return { box, value }
+})
+valuations.sort((a, b) => a.value - b.value)
+
+// Rendering
 console.log('WxDxH: Value')
-boxes.forEach(box => {
-  const v = computeBoxValue(box)
-  console.log(`${box[0]}x${box[1]}x${box[2]}: ${v}`)
+valuations.forEach(valuation => {
+  const { box, value } = valuation
+  console.log(`${box[0]}x${box[1]}x${box[2]}: ${value}`)
 })
