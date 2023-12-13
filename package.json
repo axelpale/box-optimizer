@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "box-optimizer",
+  "version": "1.0.0",
+  "description": "Optimize a box system",
+  "main": "run.js",
+  "type": "module",
+  "scripts": {
+    "lint": "standard",
+    "test": "npm run lint"
+  },
+  "author": "Akseli Palén <akseli.palen@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "^17.1.0"
+  }
+}
